@@ -9,6 +9,11 @@ import LoginScreen from './screens/LoginScreen';
 import Beacons from 'react-native-beacons-manager';
 import { hashCode, deepCopyBeaconsLists } from './utils/helpers';
 import { InAppNotificationProvider, withInAppNotification } from 'react-native-in-app-notification';
+import { Provider } from 'react-redux';
+import configureStore from './redux/store';
+
+const store = configureStore({});
+
 
 // uuid of YOUR BEACON (change to yours)
 const UUID = 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0';
@@ -19,6 +24,7 @@ const EMPTY_BEACONS_LISTS = {
   monitorEnterList: [],
   monitorExitList: [],
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -227,10 +233,12 @@ class App extends React.Component {
       );
     }
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        {isAuthenticated ? <AppNavigator /> : <LoginScreen />}
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          {isAuthenticated ? <AppNavigator /> : <LoginScreen />}
+        </View>
+      </Provider>
     );
   }
 }
