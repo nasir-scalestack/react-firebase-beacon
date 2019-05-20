@@ -16,6 +16,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "facebookScheme": {
+      "facebookAppId": "2733859643296042",
+      "facebookDisplayName": "Beachlife"
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },

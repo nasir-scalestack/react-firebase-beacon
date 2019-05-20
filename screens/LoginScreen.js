@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { connect } from 'react-redux';
+import { signInWithFacebookAsync, signInWithGoogleAsync, signInEmailAndPassword } from '../redux/modules/auth';
+
 import { StyleSheet, Alert, Text } from 'react-native';
 import {
   Container,
@@ -12,9 +15,9 @@ import {
   View,
 } from 'native-base';
 import { NavigationActions } from 'react-navigation';
-import firebase from 'react-native-firebase';
+import * as Expo from 'expo';
 
-export default class LoginScreen extends React.Component {
+class LoginScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
@@ -30,19 +33,7 @@ export default class LoginScreen extends React.Component {
     };
   }
 
-  onLoginPress = () => {
-    const { email, password } = this.state;
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(
-        () => {},
-        error => {
-          Alert.alert(error.message);
-        }
-      );
-  };
-
+ 
   onCreateAccountPress = () => {
     const { navigation } = this.props;
     const navActions = NavigationActions.reset({
@@ -80,14 +71,14 @@ export default class LoginScreen extends React.Component {
               />
             </Item>
             <View padder>
-              <Button full primary onPress={this.onLoginPress}>
+              <Button full primary onPress={() => this.props.signInEmailAndPassword(this.state.email,this.state.password)}>
                 <Text>Login</Text>
               </Button>
               <Button
                 style={{ marginTop: 10 }}
                 full
                 light
-                onPress={this.signInWithFacebook}
+                onPress={this.props.signInWithFacebookAsync}
               >
                 <Text>Sign in using Facebook</Text>
               </Button>
@@ -95,25 +86,9 @@ export default class LoginScreen extends React.Component {
                 style={{ marginTop: 10 }}
                 full
                 light
-                onPress={this.onCreateAccountPress}
-              >
-                <Text>Sign in using Facebook</Text>
-              </Button>
-              <Button
-                style={{ marginTop: 10 }}
-                full
-                light
-                onPress={this.onCreateAccountPress}
+                onPress={this.props.signInWithGoogleAsync}
               >
                 <Text>Sign in using Google</Text>
-              </Button>
-              <Button
-                style={{ marginTop: 10 }}
-                full
-                light
-                onPress={this.onCreateAccountPress}
-              >
-                <Text>Create Account...</Text>
               </Button>
             </View>
           </Form>
@@ -124,3 +99,5 @@ export default class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({});
+
+export default connect(null, { signInWithFacebookAsync, signInWithGoogleAsync,  signInEmailAndPassword  })(LoginScreen);

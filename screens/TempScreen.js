@@ -1,68 +1,73 @@
 import React from 'react';
-import { Platform, View, StyleSheet, Button, Image, ImageBackground } from 'react-native';
-import { connect } from 'react-redux';
-import { withNavigation } from 'react-navigation';
-import { fetchBeaconData } from '../redux/modules/beacons';
+import {  View, StyleSheet, Button, Image, ImageBackground } from 'react-native';
+
 import CustomHeader from '../components/CustomHeader'
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home ',
-    headerStyle: {
-      backgroundColor: 'blue',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
 
+// class HomeHeader extends React.Component {
+//   render() {
+//     return (
+//       <Header style={{ paddingTop: 20, width: '100%', justifyContent: 'flex-start' }}>
+//           <Left>
+//             <Button transparent onPress={() => { this.props.navigation.navigate('AuthScreen') }}>
+//               <Icon name='arrow-back' />
+//             </Button>
+//           </Left>
+//           <Body>
+//             <Title>Header</Title>
+//           </Body>
+//           <Right>
+//             <Button transparent>
+//               <Icon name='menu' />
+//             </Button>
+//           </Right>
+//         </Header>
+//     )
+//   }
+// }
+
+export default class TempScreen extends React.Component {
+  static navigationOptions = {
+    header: null,
   };
 
-  componentWillMount() {
-    this.props.fetchBeaconData();
-  }
-  
   render() {
     return (
 
       <View style={styles.container} >
         <ImageBackground source={require('../assets/images/selection_background.png')} style={styles.background}>
-          {/* <CustomHeader /> */}
+          <CustomHeader />
           <View style={styles.blank}></View>
           <View style={styles.row}>
             <View style={styles.buttonContainer}>
-              <Button title="SHOP" onPress={() => { () => this.props.navigation.navigate('SearchScreen') }} style={styles.buttonContainer}></Button>
+              <Button title="SHOP" onPress={() => { }} style={styles.buttonContainer}></Button>
             </View>
             <View style={styles.buttonContainer}>
-              <Button title="PLAY" onPress={() => { () => this.props.navigation.navigate('SearchScreen') }} style={styles.buttonContainer}></Button>
+              <Button title="PLAY" onPress={() => { alert('salam') }} style={styles.buttonContainer}></Button>
             </View>
             <View style={styles.buttonContainer}>
-              <Button title="EAT" onPress={() => { () => this.props.navigation.navigate('SearchScreen') }} style={styles.buttonContainer}></Button>
+              <Button title="EAT" onPress={() => { }} style={styles.buttonContainer}></Button>
             </View>
           </View>
           <View style={styles.row}>
             <View style={styles.buttonContainer}>
-              <Button title="STAY" onPress={() => {
-                () => this.props.navigation.navigate('SearchScreen')
-              }} style={styles.buttonContainer}>
+              <Button title="STAY" onPress={() => { }} style={styles.buttonContainer}>
               </Button>
             </View>
             <View style={styles.buttonContainer}>
               <Button title="EVENTS" onPress={() => {
-                () => this.props.navigation.navigate('SearchScreen')
+                this.props.navigation.navigate('AuthScreen')
 
               }} style={styles.buttonContainer}></Button>
             </View>
             <View style={styles.buttonContainer}>
-              <Button title="SERVICES" onPress={() => {
-                () => this.props.navigation.navigate('SearchScreen')
-              }} style={styles.buttonContainer}></Button>
+              <Button title="SERVICES" onPress={() => { }} style={styles.buttonContainer}></Button>
             </View>
           </View>
           <View style={styles.row}>
             <View style={styles.buttonContainer}>
               <Button title="DEALS" onPress={() => {
-                () => this.props.navigation.navigate('SearchScreen')
+                this.props.navigation.navigate('ArminScreen')
               }} />
             </View>
             <View style={styles.buttonContainer}>
@@ -92,21 +97,15 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
-    
   },
   blank: { flex: 7, flexDirection: 'column', alignItems: "stretch", width: '100%' },
   buttonContainer: {
-    flex: 1, margin: 5, backgroundColor: '#3387FF', alignItems : "stretch"
+    flex: 1, margin: 12, backgroundColor: '#33C7FF', color: '#ffffff'
 
   },
   buttons: {
-    flex: 1, backgroundColor: '#3387FF', color: '#ffffff', alignItems : "stretch"
+    flex: 1, margin: 12, backgroundColor: '#33C7FF', color: '#ffffff'
   }, background: { height: "100%", width: '100%' }
 });
-
-const mapStateToProps = state => ({
-  beacons: state.beacons
-})
-export default connect(mapStateToProps, { fetchBeaconData })(HomeScreen)

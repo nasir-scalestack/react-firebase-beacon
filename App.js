@@ -11,13 +11,12 @@ import { InAppNotificationProvider, withInAppNotification } from 'react-native-i
 import { Provider } from 'react-redux';
 import configureStore from './redux/store';
 const store = configureStore({});
-
-import firebase from 'react-native-firebase';
+import DefaultProps from './constants/DefaultProps';
 
 
 // uuid of YOUR BEACON (change to yours)
-const UUID = 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0';
-const IDENTIFIER = 'IDENTIFIER_NAME';
+const UUID = '23A01AF0-232A-4518-9C0E-323FB773F5EF';
+const IDENTIFIER = 'Beachlife';
 const TIME_FORMAT = 'HH:mm:ss';
 const EMPTY_BEACONS_LISTS = {
   rangingList: [],
@@ -35,8 +34,8 @@ const styles = StyleSheet.create({
 
 
 const region = {
-  identifier: 'Gatespace',
-  uuid: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0'
+  identifier: 'Beachlife',
+  uuid: '23A01AF0-232A-4518-9C0E-323FB773F5EF'
 };
 
 class App extends React.Component {
@@ -61,17 +60,26 @@ class App extends React.Component {
       identifier: IDENTIFIER,
       message: '',
       user: null,
+      beacons: []
     };
   }
-
+  
   componentDidMount() {
-    this.unsubscriber = firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ user });
+   fetch('http://3.18.28.164/api/getAllBeacons', DefaultProps.getHeader)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson.beacons[0])
+        this.turnOnBeaconListeners(responseJson.beacons);
+    })
+    .catch((error) => {
+        console.log(error);
     });
-  }
 
+  }
+  
 
   componentWillUnMount() {
+
     const { uuid, identifier } = this.state;
 
     const region = { identifier, uuid }; // minor and major are null here
@@ -101,7 +109,8 @@ class App extends React.Component {
     this.beaconsDidRangeEvent.remove();
   }
 
-  turnOnBeaconListeners() {
+  turnOnBeaconListeners(beaconsCompareList = []) {
+
     this._beaconsLists = EMPTY_BEACONS_LISTS;
     const { identifier, uuid, user } = this.state;
     // MANDATORY: you have to request ALWAYS Authorization (not only when in use) when monitoring
@@ -215,14 +224,12 @@ class App extends React.Component {
       );
     }
 
-    if (!this.state.user) {
-      return  <LoginScreen />;
-    }
+
     return (
       <Provider store={store}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
+          { !this.state.user ? <AppNavigator /> : <AppNavigator /> }
         </View>
       </Provider>
     );
