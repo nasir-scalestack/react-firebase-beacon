@@ -13,8 +13,16 @@ import {
 } from 'native-base';
 import { NavigationActions } from 'react-navigation';
 import * as firebase from 'firebase';
+import * as Expo from 'expo';
 
 export default class LoginScreen extends React.Component {
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      header: null,
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -75,6 +83,14 @@ export default class LoginScreen extends React.Component {
             <View padder>
               <Button full primary onPress={this.onLoginPress}>
                 <Text>Login</Text>
+              </Button>
+              <Button
+                style={{ marginTop: 10 }}
+                full
+                light
+                onPress={this.signInWithFacebook}
+              >
+                <Text>Sign in using Facebook</Text>
               </Button>
               <Button
                 style={{ marginTop: 10 }}
