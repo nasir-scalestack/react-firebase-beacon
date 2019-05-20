@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		014BCD19CDE448C795AE653A /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F595BD4A7AD54E019F2C0CD1 /* MaterialCommunityIcons.ttf */; };
 		08D0AA8196634A48ACE3CF04 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A499207125340F8863FDE4C /* Roboto.ttf */; };
@@ -12,8 +13,10 @@
 		1A54ED9E4C2149E681C045C6 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A272E7B7443461E86475168 /* Roboto_medium.ttf */; };
 		23C41E6C6A834488ACDF3333 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64AEEEEB44B8456D80E5054C /* Foundation.ttf */; };
 		2823FB03E6EC48DB9C8D6099 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 748207404A334BE4B03AD9D4 /* Entypo.ttf */; };
+		2A28B8302292A2020028A549 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A28B82F2292A2020028A549 /* GoogleService-Info.plist */; };
 		2FDA8EDE254A470BBBEACF08 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5308A6A523E47C193810129 /* Zocial.ttf */; };
 		44089470DB4744168265B10D /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4EBD9A9AD95444E98DAAD9C /* FontAwesome5_Brands.ttf */; };
+		62ACB4C46C934F67B0B59165 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3AC7E9494D4CC784872385 /* libRNFirebase.a */; };
 		7037B4BCF06443878550DC49 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22F22556CBCB4BCFAF71EAD9 /* FontAwesome.ttf */; };
 		70E00563AA13467CBAEA4995 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 88393633176546DFAC225996 /* MaterialIcons.ttf */; };
 		7E3FB26E4DFF4DCDA67619FC /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48F5A343C9F245DF937578BD /* AntDesign.ttf */; };
@@ -38,9 +41,22 @@
 		F0194D1DCB36416B82D75440 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9768A4BD39CA448F981C1009 /* EvilIcons.ttf */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2A28B8342292A3830028A549 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2286C6516CBB43C8AE787A97 /* RNFirebase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFirebase;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		17B69769F253474591E0CA66 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
+		2286C6516CBB43C8AE787A97 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		22F22556CBCB4BCFAF71EAD9 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		2A28B82F2292A2020028A549 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../beachlife/BeachLife/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2A28B8392292A9FC0028A549 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKCoreKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1548D9E4CB1AEFA5CCAE6D /* Pods-gatespace-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gatespace-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gatespace-app/Pods-gatespace-app.debug.xcconfig"; sourceTree = "<group>"; };
 		32B6A6A719EA4CF786C15B57 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		3D6B9D449CCB4CE0A0FD81AF /* libRNiBeacon.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNiBeacon.a; sourceTree = "<group>"; };
@@ -70,6 +86,7 @@
 		B5DB047E1F3A684600E91581 /* shell-app-manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shell-app-manifest.json"; sourceTree = "<group>"; };
 		B5DB047F1F3A684600E91581 /* shell-app.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shell-app.bundle"; sourceTree = "<group>"; };
 		C4A88D15726AD99E8A257BC7 /* libPods-gatespace-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-gatespace-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA3AC7E9494D4CC784872385 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		CF34F77FAE6F4C74A03AA71E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		D5308A6A523E47C193810129 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		DA35809264E04C1CB3C8B622 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -83,6 +100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB8117C1BFA0514F79CAF74 /* libPods-gatespace-app.a in Frameworks */,
+				62ACB4C46C934F67B0B59165 /* libRNFirebase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,15 +110,25 @@
 		1A42804E64B7E9E0AB8B6799 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A28B8392292A9FC0028A549 /* libFBSDKCoreKit.a */,
 				C4A88D15726AD99E8A257BC7 /* libPods-gatespace-app.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2A28B8312292A3820028A549 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B8352292A3830028A549 /* libRNFirebase.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		2A671EF92277CFC300E1F9EE /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				3D6B9D449CCB4CE0A0FD81AF /* libRNiBeacon.a */,
+				CA3AC7E9494D4CC784872385 /* libRNFirebase.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -117,12 +145,14 @@
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
+				2A28B82F2292A2020028A549 /* GoogleService-Info.plist */,
 				B56386431DB9693800A0598C /* gatespace-app */,
 				B56386421DB9693800A0598C /* Products */,
 				5B29BC350A332C58878A9F13 /* Pods */,
 				1A42804E64B7E9E0AB8B6799 /* Frameworks */,
 				EA7DD8FD037949F3AC41BDE8 /* Resources */,
 				2A671EF92277CFC300E1F9EE /* Recovered References */,
+				D5CCE31993484F0A91B875B1 /* Libraries */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +190,14 @@
 				B563865E1DB96A5E00A0598C /* main.m */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		D5CCE31993484F0A91B875B1 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				2286C6516CBB43C8AE787A97 /* RNFirebase.xcodeproj */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 		EA7DD8FD037949F3AC41BDE8 /* Resources */ = {
@@ -243,12 +281,28 @@
 			mainGroup = B56386381DB9693800A0598C;
 			productRefGroup = B56386421DB9693800A0598C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2A28B8312292A3820028A549 /* Products */;
+					ProjectRef = 2286C6516CBB43C8AE787A97 /* RNFirebase.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B56386401DB9693800A0598C /* gatespace-app */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2A28B8352292A3830028A549 /* libRNFirebase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFirebase.a;
+			remoteRef = 2A28B8342292A3830028A549 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B563863F1DB9693800A0598C /* Resources */ = {
@@ -268,6 +322,7 @@
 				2823FB03E6EC48DB9C8D6099 /* Entypo.ttf in Resources */,
 				F0194D1DCB36416B82D75440 /* EvilIcons.ttf in Resources */,
 				BF78FDCEC6B94CC885CE3410 /* Feather.ttf in Resources */,
+				2A28B8302292A2020028A549 /* GoogleService-Info.plist in Resources */,
 				7037B4BCF06443878550DC49 /* FontAwesome.ttf in Resources */,
 				44089470DB4744168265B10D /* FontAwesome5_Brands.ttf in Resources */,
 				D6CFAE7486CB4F16A99A6180 /* FontAwesome5_Regular.ttf in Resources */,
@@ -565,6 +620,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.scalestack.gatespace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -655,6 +711,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.scalestack.gatespace;

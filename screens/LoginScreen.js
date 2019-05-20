@@ -12,8 +12,7 @@ import {
   View,
 } from 'native-base';
 import { NavigationActions } from 'react-navigation';
-import * as firebase from 'firebase';
-import * as Expo from 'expo';
+import firebase from 'react-native-firebase';
 
 export default class LoginScreen extends React.Component {
 
@@ -91,6 +90,22 @@ export default class LoginScreen extends React.Component {
                 onPress={this.signInWithFacebook}
               >
                 <Text>Sign in using Facebook</Text>
+              </Button>
+              <Button
+                style={{ marginTop: 10 }}
+                full
+                light
+                onPress={this.onCreateAccountPress}
+              >
+                <Text>Sign in using Facebook</Text>
+              </Button>
+              <Button
+                style={{ marginTop: 10 }}
+                full
+                light
+                onPress={this.onCreateAccountPress}
+              >
+                <Text>Sign in using Google</Text>
               </Button>
               <Button
                 style={{ marginTop: 10 }}

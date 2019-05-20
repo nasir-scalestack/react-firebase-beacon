@@ -3,12 +3,17 @@
 import React from 'react';
 import { Alert, DeviceEventEmitter, Platform, StatusBar, StyleSheet, View, NativeModules } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
-import * as firebase from 'firebase';
 import AppNavigator from './navigation/AppNavigator';
 import LoginScreen from './screens/LoginScreen';
 import Beacons from 'react-native-beacons-manager';
 import { hashCode, deepCopyBeaconsLists } from './utils/helpers';
 import { InAppNotificationProvider, withInAppNotification } from 'react-native-in-app-notification';
+import { Provider } from 'react-redux';
+import configureStore from './redux/store';
+const store = configureStore({});
+
+import firebase from 'react-native-firebase';
+
 
 // uuid of YOUR BEACON (change to yours)
 const UUID = 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0';
@@ -19,6 +24,7 @@ const EMPTY_BEACONS_LISTS = {
   monitorEnterList: [],
   monitorExitList: [],
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -48,27 +54,22 @@ class App extends React.Component {
   
   constructor(props) {
     super(props);
+    this.unsubscriber = null;
     this.state = {
       isLoadingComplete: false,
-      isAuthenticated: false,
-      isAuthenticationReady: false,
       uuid: UUID,
       identifier: IDENTIFIER,
       message: '',
+      user: null,
     };
-
-    if (!firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: 'AIzaSyA-eJKwGNj1qBoGK-6YPh18BOpR555jjs4',
-        authDomain: 'ap1-demo-app.firebaseapp.com',
-        databaseURL: 'https://ap1-demo-app.firebaseio.com',
-        projectId: 'ap1-demo-app',
-        storageBucket: 'ap1-demo-app.appspot.com',
-        messagingSenderId: '685927665140',
-      });
-    }
-    firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
   }
+
+  componentDidMount() {
+    this.unsubscriber = firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ user });
+    });
+  }
+
 
   componentWillUnMount() {
     const { uuid, identifier } = this.state;
@@ -171,18 +172,6 @@ class App extends React.Component {
       },
     );
   }
-  
-  onAuthStateChanged = user => {
-    this.setState({
-      isAuthenticationReady: true,
-      isAuthenticated: !!user,
-      user: user
-    });
-    if(user){
-      console.log(user);
-      this.turnOnBeaconListeners();
-    }
-  };
 
   _loadResourcesAsync = async () =>
     Promise.all([
@@ -212,12 +201,11 @@ class App extends React.Component {
   render() {
     const {
       isLoadingComplete,
-      isAuthenticationReady,
-      isAuthenticated,
+      user
     } = this.state;
     const { skipLoadingScreen } = this.props;
 
-    if ((!isLoadingComplete || !isAuthenticationReady) && !skipLoadingScreen) {
+    if (!isLoadingComplete && !skipLoadingScreen) {
       return (
         <AppLoading
           startAsync={this._loadResourcesAsync}
@@ -226,11 +214,17 @@ class App extends React.Component {
         />
       );
     }
+
+    if (!this.state.user) {
+      return  <LoginScreen />;
+    }
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        {isAuthenticated ? <AppNavigator /> : <LoginScreen />}
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </Provider>
     );
   }
 }

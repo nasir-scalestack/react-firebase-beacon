@@ -85,7 +85,10 @@ target 'gatespace-app' do
     
   pod 'ReactNativeBeaconsManager',
     :path => "../node_modules/react-native-beacons-manager"
-
+    
+  pod 'RNFirebase', :path => "../node_modules/react-native-firebase/ios"
+  pod 'Firebase/Auth', "~> 5.20.1"
+  
   pod 'React',
     :path => "../node_modules/react-native",
     :inhibit_warnings => true,
