@@ -6,7 +6,9 @@ import { red } from 'ansi-colors';
 import DefaultProps from '../constants/DefaultProps';
 import CustomHeader from '../components/CustomHeader';
 
-export default class SearchScreen extends Component {
+import { connect } from 'react-redux';
+
+class SearchScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,33 +36,12 @@ export default class SearchScreen extends Component {
         },
     
       };
-    
-    fetchBeaconsData() {
-        fetch('http://3.18.28.164/api/getAllBeacons', DefaultProps.getHeader)
-            .then((response) => response.json())
-            .then((responseJson) => {
-                console.log(responseJson)
-                this.setState({
-                    isLoading: false,
-                    beacons: responseJson.beacons,
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-    componentDidMount() {
-        this.fetchBeaconsData();
-        console.log(this.state.beacons)
-
-    }
     render() {
         return (
 
             <View style={styles.container} >
                 <FlatList
-                    data={this.state.beacons}
+                    data={this.props.beacons}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) =>
                     
@@ -123,4 +104,8 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = state => ({
+    beacons: state.beacons
+  })
+export default connect(mapStateToProps, null)(SearchScreen)
 // skip this line if using Create React Native App

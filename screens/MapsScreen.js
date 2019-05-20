@@ -4,7 +4,7 @@ import { MapView } from "expo";
 import DefaultProps from '../constants/DefaultProps';
 import { Container, Header, Tab, Tabs, TabHeading, Icon } from 'native-base';
 import CustomHeader from '../components/CustomHeader';
-
+import { connect } from 'react-redux';
 
 _handleMapRegionChange = mapRegion => {
     this.setState({ mapRegion });
@@ -24,7 +24,7 @@ _handleMapRegionChange = mapRegion => {
     this.setState({ locationResult: JSON.stringify(location), location, });
   };
 
-export default class MapsScreen extends Component {
+class MapsScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -140,3 +140,8 @@ const styles = StyleSheet.create({
         flex: 1, margin: 12
     }
 });
+
+const mapStateToProps = state => ({
+    beacons: state.beacons
+  })
+export default connect(mapStateToProps, null)(MapsScreen)

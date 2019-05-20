@@ -17,6 +17,10 @@ fetch('http://3.18.28.164/api/getAllBeacons', DefaultProps.getHeader)
     });
 }
 
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+  
 export default (state = {
     beacons: []
 }, action) => {

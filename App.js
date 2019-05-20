@@ -13,6 +13,7 @@ import configureStore from './redux/store';
 const store = configureStore({});
 import DefaultProps from './constants/DefaultProps';
 
+import { auth, fb } from './firebase';
 
 // uuid of YOUR BEACON (change to yours)
 const UUID = '23A01AF0-232A-4518-9C0E-323FB773F5EF';
@@ -60,7 +61,8 @@ class App extends React.Component {
       identifier: IDENTIFIER,
       message: '',
       user: null,
-      beacons: []
+      isAuthenticated: false,
+      isAuthenticationReady: false,
     };
   }
   
@@ -68,12 +70,13 @@ class App extends React.Component {
    fetch('http://3.18.28.164/api/getAllBeacons', DefaultProps.getHeader)
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson.beacons[0])
         this.turnOnBeaconListeners(responseJson.beacons);
     })
     .catch((error) => {
         console.log(error);
     });
+
+    auth.onAuthStateChanged(this.onAuthStateChanged);
 
   }
   
@@ -151,8 +154,14 @@ class App extends React.Component {
       data => {
         this.setState({ message: 'beaconsDidRange event' });
         data.beacons.forEach(event => {
-          console.log(event);
+          console.log(event.uuid);
         })
+
+        var arr = _.filter(data.beacons, function(obj) {
+          return _.where(obj.uuid, {id: 'some_id'}).length > 0;
+        })
+
+        // throw push notification
       },
     );
 
@@ -207,33 +216,48 @@ class App extends React.Component {
     this.setState({ isLoadingComplete: true });
   };
 
-  render() {
-    const {
-      isLoadingComplete,
-      user
-    } = this.state;
-    const { skipLoadingScreen } = this.props;
-
-    if (!isLoadingComplete && !skipLoadingScreen) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
+  onAuthStateChanged = user => {
+    this.setState({
+      isAuthenticationReady: true,
+      isAuthenticated: !!user,
+      user: user
+    });
+    if(user){
+      console.log(user);
+      this.trackUser();
     }
+  };
 
-
-    return (
-      <Provider store={store}>
+    render() {
+      const {
+        isLoadingComplete,
+        isAuthenticationReady,
+        isAuthenticated,
+      } = this.state;
+      const { skipLoadingScreen } = this.props;
+  
+      if ((!isLoadingComplete || !isAuthenticationReady) && !skipLoadingScreen) {
+        return (
+          <AppLoading
+            startAsync={this._loadResourcesAsync}
+            onError={this._handleLoadingError}
+            onFinish={this._handleFinishLoading}
+          />
+        );
+      }
+      return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          { !this.state.user ? <AppNavigator /> : <AppNavigator /> }
+          <Provider store={store}>
+            <InAppNotificationProvider>
+              {
+                isAuthenticated ? <AppNavigator /> : <LoginScreen />
+              }
+              </InAppNotificationProvider> 
+            </Provider> 
         </View>
-      </Provider>
-    );
+      );
+    }
   }
-}
 
 export default withInAppNotification(App);
